@@ -23,7 +23,7 @@ class ParkController extends Controller
                 ->count();
         }
 
-        return view('parks.index', compact('parks')); // ✅ toevoegen
+        return view('parks.index', compact('parks'));
     }
 
 public function show(Park $park)
