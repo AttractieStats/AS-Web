@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('profile.title') }}</title>
-    @vite('resources/css/app.css')
-</head>
+@extends('layouts.vimexx')
+@section('content')
 <body class="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100">
     @include('layouts.navigation')
 
@@ -119,4 +113,4 @@
         </form>
     </div>
 </body>
-</html>
+@endsection

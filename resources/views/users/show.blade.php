@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - AttractieStats</title>
-    <link rel="preload" as="image" href="https://attractiestats.nl/img/bg.png">
-@vite('resources/css/app.css')
-</head>
+@extends('layouts.vimexx')
+@section('content')
+
 <body class="min-h-screen bg-cover bg-center bg-blue-100" style="background-image: url('https://attractiestats.nl/img/bg.png'); background-attachment: fixed;">
-    
+
     @include('layouts.navigation')
 
 <div class="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-800 shadow-xl mt-[50px] rounded-xl">
@@ -74,3 +68,4 @@
         <p class="text-gray-800 dark:text-gray-200">{{ $user->bio ?? 'Geen bio ingevuld.' }}</p>
     </div>
 </div>
+@endsection

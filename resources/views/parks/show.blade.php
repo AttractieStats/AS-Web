@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $park->name }} - Attractions</title>
-    @vite('resources/css/app.css')
-</head>
+@extends('layouts.vimexx')
+@section('content')
 <body class="h-screen justify-center bg-cover bg-center" style="background-image: url('https://attractiestats.nl/img/bg.png'); background-attachment: fixed;">
     @include('layouts.navigation')
 
@@ -98,4 +91,4 @@
         }
     </script>
 </body>
-</html>
+@endsection
