@@ -8,10 +8,10 @@
 @vite('resources/css/app.css')
 </head>
 <body class="min-h-screen bg-cover bg-center bg-blue-100" style="background-image: url('https://attractiestats.nl/img/bg.png'); background-attachment: fixed;">
-    
+
     @include('layouts.navigation')
 
-<div class="max-w-5xl mx-auto p-6 bg-white dark:bg-gray-800 shadow-xl rounded-xl">
+<div class="max-w-5xl mx-auto p-6 bg-white dark:bg-gray-800 mt-[50px] shadow-xl rounded-xl">
     <h2 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">👥 Gebruikers</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

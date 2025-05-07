@@ -8,7 +8,7 @@
 @vite('resources/css/app.css')
 </head>
 <body class="min-h-screen bg-cover bg-center bg-blue-100" style="background-image: url('https://attractiestats.nl/img/bg.png'); background-attachment: fixed;">
-    
+
     @include('layouts.navigation')
 
 <div class="flex justify-center mt-[50px] mx-[20px]">
