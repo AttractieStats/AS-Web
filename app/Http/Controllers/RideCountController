@@ -1,0 +1,31 @@
+<?php 
+namespace App\Http\Controllers;
+
+use App\Models\RideCount;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+
+class RideCountController extends Controller
+{
+    public function viewToday()
+    {
+        $today = Carbon::now()->startOfDay();
+        $rideCounts = RideCount::where('user_id', auth()->id())
+            ->where('created_at', '>=', $today)
+            ->get();
+
+        return view('ridecounts.today', compact('rideCounts'));
+    }
+
+    public function viewHistory()
+    {
+        $history = RideCount::where('user_id', auth()->id())
+            ->selectRaw('DATE(created_at) as date, COUNT(*) as total')
+            ->groupBy('date')
+            ->orderBy('date', 'desc')
+            ->get();
+
+        return view('ridecounts.history', compact('history'));
+    }
+}
+?>
