@@ -12,11 +12,17 @@ class ParkShow extends Component
     public $attractions;
     public $doneAttractions;
     public $totalRides;
+
+    public $counts = [];
+
     public function mount($park,$attractions, $doneAttractions, $totalRides){
         $this->park = $park;
         $this->attractions = $attractions;
         $this->doneAttractions = $doneAttractions;
         $this->totalRides = $totalRides;
+        $this->counts = RideCount::where('user_id', auth()->id())
+            ->pluck('count', 'attraction_id')
+            ->toArray();
     }
 
     public function render()
@@ -34,5 +40,6 @@ class ParkShow extends Component
                 ['count' => 0]
             );
         $rideCount->increment('count');
+        $this->counts[$attractionId] = $rideCount->count;
     }
 }

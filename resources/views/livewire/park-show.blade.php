@@ -46,11 +46,13 @@
                         <div class="flex items-center space-x-4">
                             <!-- Ride count -->
                             @php
-                                $rideCount = $attraction->rideCounts->where('user_id', \Illuminate\Support\Facades\Auth::id())->first();
+                                $rideCount = \App\Models\RideCount::where('attraction_id', $attraction->id)
+                                   ->where('user_id', \Illuminate\Support\Facades\Auth::id())
+                                   ->first();
                             @endphp
-                            <span id="count-{{ $attraction->id }}" class="text-xl font-bold text-white">
-                            {{ $rideCount->count ?? 0 }}
-                        </span>
+                            <span id="count-{{ $attraction->id }}" class="text-xl font-bold text-white" wire:poll="1s">
+                                {{ $counts[$attraction->id] ?? 0 }}
+                            </span>
                             <!-- + knop -->
                             <button wire:click="incrementRidecount( {{$attraction->id}} )"
                                     class="px-4 py-2 bg-[#BB86FC] text-white rounded-md hover:bg-[#7855a3]">
