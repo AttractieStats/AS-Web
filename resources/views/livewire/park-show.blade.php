@@ -44,13 +44,7 @@
                         </div>
 
                         <div class="flex items-center space-x-4">
-                            <!-- Ride count -->
-                            @php
-                                $rideCount = \App\Models\RideCount::where('attraction_id', $attraction->id)
-                                   ->where('user_id', \Illuminate\Support\Facades\Auth::id())
-                                   ->first();
-                            @endphp
-                            <span id="count-{{ $attraction->id }}" class="text-xl font-bold text-white" wire:poll="1s">
+                            <span id="count-{{ $attraction->id }}" class="text-xl font-bold text-white">
                                 {{ $counts[$attraction->id] ?? 0 }}
                             </span>
                             <!-- + knop -->
