@@ -19,30 +19,33 @@
         </div>
 
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach ($parks as $index => $park)
+            @foreach ($parks as $park)
                 @php
                     $doneAttractions = $park->attractions->filter(function ($attraction) {
                         return $attraction->ridecounts->sum('count') > 0;
-                    })->count();
+                    });
                 @endphp
 
-                <li
-                    class="bg-white p-6 rounded-lg shadow-lg transform transition duration-500 opacity-0 translate-y-4"
-                    x-show="{{ json_encode(strtolower($park->name)) }}.includes(search.toLowerCase())"
-                    x-init="setTimeout(() => { $el.classList.remove('opacity-0'); $el.classList.remove('translate-y-4'); }, {{ $index * 75 }})"
+                <li 
+                    x-show="{{ json_encode(Str::lower($park->name)) }}.includes(search.toLowerCase())"
+                    class="bg-white bg-opacity-80 p-6 rounded-lg shadow-lg transition duration-300 ease-in-out"
                 >
-                    <a href="{{ route('parks.show', $park) }}" class="text-blue-600 font-bold text-xl hover:underline">
+                    <h2 class="text-xl font-bold mb-2 text-gray-800">
                         {{ $park->name }}
-                    </a>
-                    <p class="mt-2 text-gray-600">
-                        {{ __('parks.location') }} {{ $park->location ?? __('parks.unknown') }}
+                    </h2>
+                    <p class="text-gray-600 mb-1">
+                        Aantal attracties: {{ $park->attractions->count() }}
                     </p>
-                    <p class="mt-1 text-gray-800 font-semibold">
-                        {{ __('parks.ride_count', ['done' => $doneAttractions, 'total' => $park->attractions_count]) }}
+                    <p class="text-gray-600">
+                        Actieve attracties (met ritten): {{ $doneAttractions->count() }}
                     </p>
                 </li>
             @endforeach
         </ul>
+
+        @if ($parks->isEmpty())
+            <p class="text-center text-white mt-10">Er zijn momenteel geen parken beschikbaar.</p>
+        @endif
     </div>
 </body>
 @endsection
