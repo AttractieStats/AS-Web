@@ -28,17 +28,20 @@
 
                 <li 
                     x-show="{{ json_encode(Str::lower($park->name)) }}.includes(search.toLowerCase())"
-                    class="bg-white bg-opacity-80 p-6 rounded-lg shadow-lg transition duration-300 ease-in-out"
                 >
-                    <h2 class="text-xl font-bold mb-2 text-gray-800">
-                        {{ $park->name }}
-                    </h2>
-                    <p class="text-gray-600 mb-1">
-                        Aantal attracties: {{ $park->attractions->count() }}
-                    </p>
-                    <p class="text-gray-600">
-                        Actieve attracties (met ritten): {{ $doneAttractions->count() }}
-                    </p>
+                    <a href="{{ route('parks.show', $park) }}"
+                       class="block bg-white bg-opacity-90 p-6 rounded-lg shadow-lg hover:shadow-xl hover:bg-opacity-100 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                    >
+                        <h2 class="text-xl font-bold mb-2 text-gray-800">
+                            {{ $park->name }}
+                        </h2>
+                        <p class="text-gray-600 mb-1">
+                            Aantal attracties: {{ $park->attractions->count() }}
+                        </p>
+                        <p class="text-gray-600">
+                            Actieve attracties (met ritten): {{ $doneAttractions->count() }}
+                        </p>
+                    </a>
                 </li>
             @endforeach
         </ul>
