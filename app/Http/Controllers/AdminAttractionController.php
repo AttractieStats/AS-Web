@@ -35,6 +35,11 @@ public function create()
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
         ]);
 
+        // De attracties tabel bewaart de type naam als tekst. Haal daarom
+        // de naam op en voeg deze toe aan de validatie data.
+        $validated['type'] = AttractionType::findOrFail($validated['type_id'])->name;
+        unset($validated['type_id']);
+
         if ($request->hasFile('image')) {
             $manager = new ImageManager(new GdDriver());
             $image = $manager->read($request->file('image'));
@@ -73,6 +78,9 @@ public function edit(Attraction $attraction)
             'park_id' => 'required|exists:parks,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
         ]);
+
+        $validated['type'] = AttractionType::findOrFail($validated['type_id'])->name;
+        unset($validated['type_id']);
 
         if ($request->hasFile('image')) {
             if ($attraction->image_path) {
